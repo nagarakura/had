@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:id="@+id/leftPart"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rightPart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="821dp"
+            android:background="@android:color/holo_blue_bright"
+            android:gravity="center"
+            android:paddingTop="300dp"
+            android:paddingBottom="300dp"
+            android:text="LOGIN"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:textFontWeight="@integer/material_motion_duration_long_2"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/rightPart"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toEndOf="@+id/leftPart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="ExtraText">
+        <!-- Replace with your custom logo -->
+        android:layout_gravity="center"/>
+        <ImageView
+            android:layout_width="151dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img"
+            android:layout_gravity="center"
+            android:paddingTop="100dp"/>
+        <EditText
+            android:id="@+id/usernameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:paddingTop="25dp"/>
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"/>
+        <CheckBox
+            android:id="@+id/checkbox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apple"/>
+        <CheckBox
+            android:id="@+id/checkbox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Orange"/>
+        <CheckBox
+            android:id="@+id/checkbox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grapes"/>
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:onClick="onSubmitClicked"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+package com.example.second2;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+    public void onSubmitClicked(View view) {
+        EditText usernameEditText = findViewById(R.id.usernameEditText);
+        EditText passwordEditText = findViewById(R.id.passwordEditText);
+        CheckBox checkbox1 = findViewById(R.id.checkbox1);
+        CheckBox checkbox2 = findViewById(R.id.checkbox2);
+        CheckBox checkbox3 = findViewById(R.id.checkbox3);
+        String username = usernameEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
+        String selectedCheckbox = "";
+        if (checkbox1.isChecked()) {
+            selectedCheckbox = "Checkbox 1 is checked";
+        } else if (checkbox2.isChecked()) {
+            selectedCheckbox = "Checkbox 2 is checked";
+        } else if (checkbox3.isChecked()) {
+            selectedCheckbox = "Checkbox 3 is checked";
+        }
+        // Display a toast message with the form entry details
+        String toastMessage = "Username: " + username + "\nPassword: " + password + "\n" +
+                selectedCheckbox;
+        Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
+    }
+}
